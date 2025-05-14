@@ -1,0 +1,42 @@
+.input_field {
+  width: 300px;
+}
+
+.heading {
+  font-family: sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.active_submit_button {
+  background-color: #3f51b5;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.inactive_submit_button {
+  background-color: #add8e6;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.artsyworld_container {
+  width: 100%;
+  height: 100%;
+}
+
+.form_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
