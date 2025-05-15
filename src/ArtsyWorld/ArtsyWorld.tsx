@@ -67,7 +67,7 @@ const ArtsyWorld = () => {
       <FormControl className={styles.form_container}>
         <p className={styles.heading}>Artsy World Account Deletion</p>
         <TextField
-          label="Username"
+          label="Email"
           value={email}
           onChange={(e) => {
             handleEmailChange(e);
@@ -76,6 +76,7 @@ const ArtsyWorld = () => {
           className={styles.input_field}
           error={showEmailError && !isValidEmail}
           helperText={emailErrorText}
+          placeholder="Enter email"
         />
         <TextField
           label="Password"
@@ -87,9 +88,10 @@ const ArtsyWorld = () => {
           className={styles.input_field}
           error={showPasswordError && !isValidPassword}
           helperText={passwordErrorText}
+          placeholder="Enter Password"
         />
         {error ? (
-          <p className={styles.error_text}>Username or Password is incorrect</p>
+          <p className={styles.error_text}>Email or Password is incorrect</p>
         ) : null}
         <button
           onClick={handleSubmit}
