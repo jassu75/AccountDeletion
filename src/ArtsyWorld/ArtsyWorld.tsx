@@ -1,4 +1,4 @@
-import { FormControl, Grid, TextField } from "@mui/material";
+import { CircularProgress, FormControl, Grid, TextField } from "@mui/material";
 import { useState } from "react";
 import styles from "./artsyworld.module.css";
 import useDeleteArtsyWorld from "./useDeleteArtsyWorld";
@@ -14,8 +14,14 @@ const ArtsyWorld = () => {
   const [showPasswordError, setShowPasswordError] = useState<boolean>(false);
   const [emailErrorText, setEmailErrorText] = useState<string>("");
   const [passwordErrorText, setPasswordErrorText] = useState<string>("");
-  const { authenticated, verifyUser, setAuthenticated, error, setError } =
-    useDeleteArtsyWorld();
+  const {
+    authenticated,
+    verifyUser,
+    setAuthenticated,
+    error,
+    setError,
+    loading,
+  } = useDeleteArtsyWorld();
 
   const handleEmailChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -94,13 +100,14 @@ const ArtsyWorld = () => {
           }
           disabled={!(isValidEmail && isValidPassword)}
         >
-          Submit
+          {loading ? <CircularProgress size={20} color="inherit" /> : "Submit"}
         </button>
       </FormControl>
       {authenticated ? (
         <DeleteConfirmDialog
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
+          email={email}
         />
       ) : null}
     </Grid>

@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: 700;
+}
+
+.redirect_button {
+  background-color: #3f51b5;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 200px;
+}

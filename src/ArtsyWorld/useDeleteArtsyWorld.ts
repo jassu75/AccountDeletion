@@ -5,10 +5,12 @@ import axios from "axios";
 const useDeleteArtsyWorld = () => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const verifyUser = async (loginData: TypeUserLogin) => {
     try {
       setError(false);
+      setLoading(true);
       const headers = {
         "Content-Type": "application/json",
       };
@@ -22,10 +24,19 @@ const useDeleteArtsyWorld = () => {
       console.log("artsyworld verification error", error);
       setAuthenticated(false);
       setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
-  return { authenticated, verifyUser, setAuthenticated, error, setError };
+  return {
+    authenticated,
+    verifyUser,
+    setAuthenticated,
+    error,
+    setError,
+    loading,
+  };
 };
 
 export default useDeleteArtsyWorld;
