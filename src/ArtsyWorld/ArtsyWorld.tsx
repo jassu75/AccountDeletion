@@ -1,7 +1,8 @@
-import { FormControl, Grid, TextField, Typography } from "@mui/material";
+import { FormControl, Grid, TextField } from "@mui/material";
 import { useState } from "react";
 import styles from "./artsyworld.module.css";
 import useDeleteArtsyWorld from "./useDeleteArtsyWorld";
+import DeleteConfirmDialog from "./DeleteConfirmDialog";
 
 const ArtsyWorld = () => {
   const [email, setEmail] = useState<string>("");
@@ -13,10 +14,13 @@ const ArtsyWorld = () => {
   const [showPasswordError, setShowPasswordError] = useState<boolean>(false);
   const [emailErrorText, setEmailErrorText] = useState<string>("");
   const [passwordErrorText, setPasswordErrorText] = useState<string>("");
+  const { authenticated, verifyUser, setAuthenticated, error, setError } =
+    useDeleteArtsyWorld();
 
   const handleEmailChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    setError(false);
     setEmail(event.target.value.trim());
     setShowEmailError(true);
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -32,6 +36,7 @@ const ArtsyWorld = () => {
   const handlePasswordChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    setError(false);
     setPassword(event.target.value.trim());
     setShowPasswordError(true);
     const isValidInput = event.target.value.trim() !== "";
@@ -43,7 +48,14 @@ const ArtsyWorld = () => {
     }
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const loginData = {
+      email: email,
+      password: password,
+    };
+
+    verifyUser(loginData);
+  };
   return (
     <Grid className={styles.artsyworld_container}>
       <FormControl className={styles.form_container}>
@@ -70,6 +82,9 @@ const ArtsyWorld = () => {
           error={showPasswordError && !isValidPassword}
           helperText={passwordErrorText}
         />
+        {error ? (
+          <p className={styles.error_text}>Username or Password is incorrect</p>
+        ) : null}
         <button
           onClick={handleSubmit}
           className={
@@ -82,6 +97,12 @@ const ArtsyWorld = () => {
           Submit
         </button>
       </FormControl>
+      {authenticated ? (
+        <DeleteConfirmDialog
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
+      ) : null}
     </Grid>
   );
 };
