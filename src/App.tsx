@@ -3,7 +3,7 @@ import "./App.css";
 import Homepage from "./Homepage/Homepage";
 import ArtsyWorld from "./ArtsyWorld/ArtsyWorld";
 import SuccessDeletion from "./DirectAfterDelete/SuccessDeletion";
-import ErrorDeletion from "./DirectAfterDelete/errorDeletion";
+import ErrorDeletion from "./DirectAfterDelete/ErrorDeletion";
 
 function App() {
   return (
